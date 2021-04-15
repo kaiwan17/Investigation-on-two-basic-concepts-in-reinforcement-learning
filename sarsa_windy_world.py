@@ -2,6 +2,7 @@
 # 重要声明：该代码并不是作者完全自编写，只是在刘建平老师博客
 # https://www.cnblogs.com/pinard/p/9614290.html的基础上，#
 #加入了discount=γ，原程序中默认为1，在此感谢刘建平老师以及Shangtong Zhang、Kenta Shimada的贡献
+# 读者可以改变discount=γ=0.2或0.8，来观察输出的最优状态值函数和最优策略，将会发现明显不同
 # Copyright (C)                                                       #
 # 2016-2018 Shangtong Zhang(zhangshangtong.cpp@gmail.com)             #
 # 2016 Kenta Shimada(hyperkentakun@gmail.com)                         #
@@ -105,7 +106,7 @@ def episode(q_value):
 # 定义sarsa函数
 def sarsa():
     q_value = np.zeros((WORLD_HEIGHT, WORLD_WIDTH, 4))
-    episode_limit = 500
+    episode_limit = 1000000
 
     steps = []
     ep = 0
@@ -146,8 +147,10 @@ def sarsa():
     for row in optimal_policy:
         print(row)
     print('Wind strength for each column:\n{}'.format([str(w) for w in WIND]))
+    print(q_value)
 
 
 # 主执行程序
 if __name__ == '__main__':
     sarsa()
+    
